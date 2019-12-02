@@ -1,0 +1,60 @@
+click
+tqdm
+shap
+psutil
+
+## data science
+pandas
+xarray
+numpy
+matplotlib
+seaborn
+plotly
+statsmodels
+folium
+pandas-profiling
+missingno
+
+## jupyter
+jupyter
+jupyterlab
+jupyter_contrib_nbextensions
+ipywidgets
+notebook
+
+## nn
+torch
+torchvision
+TensorFlow
+torchsummary
+fastai
+albumentations
+
+## ml-workspace
+sklearn
+lightgbm
+xgboost
+catboost
+optuna
+mlflow
+tensorboard
+
+
+eli5
+lime
+
+## Visualizing Training and Validation Losses in real-time using PyTorch and Bokeh
+bokeh
+cycler
+Jinja2
+kiwisolver
+MarkupSafe
+opencv-python
+packaging
+Pillow
+pyparsing
+python-dateutil
+pytz
+PyYAML
+six
+tornado
