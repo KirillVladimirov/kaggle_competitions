@@ -14,6 +14,7 @@ statsmodels
 folium
 pandas-profiling
 missingno
+transforms3d
 
 ## jupyter
 jupyter
@@ -26,6 +27,8 @@ notebook
 torch
 torchvision
 TensorFlow
+keras
+keras-tuner
 torchsummary
 fastai
 albumentations
@@ -38,10 +41,19 @@ catboost
 optuna
 mlflow
 tensorboard
-
-
+transformers
+hyperopt
+tsfresh
+tpot
+deap 
+update_checker 
+tqdm 
+stopit
+annoy
+h5py
 eli5
 lime
+vecstack
 
 ## Visualizing Training and Validation Losses in real-time using PyTorch and Bokeh
 bokeh
@@ -58,3 +70,7 @@ pytz
 PyYAML
 six
 tornado
+pydot
+
+
+nltk

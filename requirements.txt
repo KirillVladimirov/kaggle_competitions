@@ -7,6 +7,7 @@
 absl-py==0.8.1            # via tensorboard, tensorflow
 albumentations==0.4.3
 alembic==1.3.1            # via mlflow, optuna
+annoy==1.16.2
 appnope==0.1.0            # via ipykernel, ipython
 astor==0.8.0              # via tensorflow
 astroid==2.3.3            # via pylint
@@ -17,6 +18,8 @@ beautifulsoup4==4.8.1     # via fastai
 bleach==3.1.0             # via nbconvert
 blis==0.4.1               # via spacy, thinc
 bokeh==1.4.0
+boto3==1.10.28            # via transformers
+botocore==1.13.28         # via boto3, s3transfer
 bottleneck==1.3.1         # via fastai
 branca==0.3.1             # via folium
 cachetools==3.1.1         # via google-auth
@@ -26,23 +29,29 @@ certifi==2019.9.11        # via requests
 chardet==3.0.4            # via requests
 click==7.0
 cliff==2.16.0             # via optuna
-cloudpickle==1.2.2        # via mlflow
+cloudpickle==1.2.2        # via distributed, hyperopt, mlflow
 cmd2==0.8.9               # via cliff
+colorama==0.4.3           # via keras-tuner
 colorlog==4.0.2           # via optuna
 configparser==4.0.2       # via databricks-cli
 confuse==1.0.0            # via pandas-profiling
 cycler==0.10.0
 cymem==2.0.3              # via preshed, spacy, thinc
+dask==2.8.1               # via distributed, tsfresh
 databricks-cli==0.9.1     # via mlflow
+deap==1.3.0
 decorator==4.4.1          # via ipython, networkx, traitlets
 defusedxml==0.6.0         # via nbconvert
+distributed==2.8.1        # via tsfresh
 docker==4.1.0             # via mlflow
+docutils==0.15.2          # via botocore
 eli5==0.10.1
 entrypoints==0.3          # via mlflow, nbconvert
 fastai==1.0.59
 fastprogress==0.1.22      # via fastai
 flask==1.1.1              # via mlflow
 folium==0.10.0
+future==0.18.2            # via hyperopt
 gast==0.2.2               # via tensorflow
 gitdb2==2.0.6             # via gitpython
 gitpython==3.0.5          # via mlflow
@@ -53,8 +62,10 @@ gorilla==0.3.0            # via mlflow
 graphviz==0.13.2          # via catboost, eli5
 grpcio==1.25.0            # via tensorboard, tensorflow
 gunicorn==20.0.2          # via mlflow
-h5py==2.10.0              # via keras-applications
+h5py==2.10.0
+heapdict==1.0.1           # via zict
 htmlmin==0.1.12           # via pandas-profiling
+hyperopt==0.2.2
 idna==2.8                 # via requests
 imageio==2.6.1            # via scikit-image
 imgaug==0.2.6             # via albumentations
@@ -67,7 +78,8 @@ isort==4.3.21             # via pylint
 itsdangerous==1.1.0       # via flask
 jedi==0.15.1              # via ipython
 jinja2==2.10.3
-joblib==0.14.0            # via scikit-learn
+jmespath==0.9.4           # via boto3, botocore
+joblib==0.14.0            # via sacremoses, scikit-learn, tpot
 json5==0.8.5              # via jupyterlab-server
 jsonschema==3.2.0         # via jupyterlab-server, nbformat
 jupyter-client==5.3.4     # via ipykernel, jupyter-console, notebook, phik, qtconsole
@@ -81,8 +93,10 @@ jupyter-nbextensions-configurator==0.4.1  # via jupyter-contrib-nbextensions
 jupyter==1.0.0
 jupyterlab-server==1.0.6  # via jupyterlab
 jupyterlab==1.2.3
-keras-applications==1.0.8  # via tensorflow
-keras-preprocessing==1.1.0  # via tensorflow
+keras-applications==1.0.8  # via keras, tensorflow
+keras-preprocessing==1.1.0  # via keras, tensorflow
+keras-tuner==1.0.0
+keras==2.3.1
 kiwisolver==1.1.0
 lazy-object-proxy==1.4.3  # via astroid
 lightgbm==2.3.0
@@ -98,10 +112,12 @@ missingno==0.4.2
 mistune==0.8.4            # via nbconvert
 mlflow==1.4.0
 more-itertools==7.2.0     # via pytest, zipp
+msgpack==0.6.2            # via distributed
 murmurhash==1.0.2         # via preshed, spacy, thinc
 nbconvert==5.6.1          # via jupyter, jupyter-contrib-nbextensions, jupyter-latex-envs, notebook, phik
 nbformat==4.4.0           # via ipywidgets, nbconvert, notebook
-networkx==2.4             # via scikit-image
+networkx==2.2             # via hyperopt, scikit-image
+nltk==3.4.5
 notebook==6.0.2
 numba==0.46.0             # via phik
 numexpr==2.7.0            # via fastai
@@ -116,7 +132,7 @@ pandas-profiling==2.3.0
 pandas==0.25.3
 pandocfilters==1.4.2      # via nbconvert
 parso==0.5.1              # via jedi
-patsy==0.5.1              # via statsmodels
+patsy==0.5.1              # via statsmodels, tsfresh
 pbr==5.4.3                # via cliff, stevedore
 pexpect==4.7.0            # via ipython
 phik==0.9.8               # via pandas-profiling
@@ -135,6 +151,7 @@ ptyprocess==0.6.0         # via pexpect, terminado
 py==1.8.0                 # via pytest
 pyasn1-modules==0.2.7     # via google-auth
 pyasn1==0.4.8             # via pyasn1-modules, rsa
+pydot==1.4.1
 pygments==2.4.2           # via ipython, jupyter-console, nbconvert, qtconsole
 pylint==2.4.4             # via pytest-pylint
 pynvx==1.0.0              # via fastai
@@ -143,7 +160,7 @@ pyperclip==1.7.0          # via cmd2
 pyrsistent==0.15.6        # via jsonschema
 pytest-pylint==0.14.1     # via phik
 pytest==5.3.0             # via phik, pytest-pylint
-python-dateutil==2.8.1
+python-dateutil==2.8.0
 python-editor==1.0.4      # via alembic
 pytz==2019.3
 pywavelets==1.1.1         # via scikit-image
@@ -151,20 +168,25 @@ pyyaml==5.1.2
 pyzmq==18.1.1             # via jupyter-client, notebook
 qtconsole==4.6.0          # via jupyter
 querystring-parser==1.2.4  # via mlflow
+regex==2019.11.1          # via transformers
 requests-oauthlib==1.3.0  # via google-auth-oauthlib
-requests==2.22.0          # via databricks-cli, docker, fastai, folium, mlflow, requests-oauthlib, spacy
+requests==2.22.0          # via databricks-cli, docker, fastai, folium, keras-tuner, mlflow, requests-oauthlib, spacy, transformers, tsfresh, update-checker
 retrying==1.3.3           # via plotly
 rsa==4.0                  # via google-auth
+s3transfer==0.2.1         # via boto3
+sacremoses==0.0.35        # via transformers
 scikit-image==0.16.2      # via imgaug, lime
-scikit-learn==0.21.3      # via eli5, lightgbm, lime, shap, sklearn
-scipy==1.3.3              # via albumentations, catboost, eli5, fastai, imgaug, lightgbm, lime, missingno, optuna, phik, scikit-image, scikit-learn, seaborn, shap, statsmodels, xgboost
+scikit-learn==0.21.3      # via eli5, keras-tuner, lightgbm, lime, shap, sklearn, tpot, tsfresh, vecstack
+scipy==1.3.3              # via albumentations, catboost, eli5, fastai, hyperopt, imgaug, keras, keras-tuner, lightgbm, lime, missingno, optuna, phik, scikit-image, scikit-learn, seaborn, shap, statsmodels, tpot, tsfresh, vecstack, xgboost
 seaborn==0.9.0
 send2trash==1.5.0         # via notebook
+sentencepiece==0.1.83     # via transformers
 shap==0.32.1
 simplejson==3.17.0        # via mlflow
 six==1.13.0
 sklearn==0.0
 smmap2==2.0.5             # via gitdb2
+sortedcontainers==2.1.0   # via distributed
 soupsieve==1.9.5          # via beautifulsoup4
 spacy==2.2.3              # via fastai
 sqlalchemy==1.3.11        # via alembic, mlflow, optuna
@@ -172,23 +194,33 @@ sqlparse==0.3.0           # via mlflow
 srsly==0.2.0              # via spacy, thinc
 statsmodels==0.10.2
 stevedore==1.31.0         # via cliff
-tabulate==0.8.6           # via databricks-cli, eli5
+stopit==1.1.2
+tabulate==0.8.6           # via databricks-cli, eli5, keras-tuner
+tblib==1.5.0              # via distributed
 tensorboard==2.0.1
 tensorflow-estimator==2.0.1  # via tensorflow
 tensorflow==2.0.0
 termcolor==1.1.0          # via tensorflow
 terminado==0.8.3          # via notebook
+terminaltables==3.1.0     # via keras-tuner
 testpath==0.4.4           # via nbconvert
 thinc==7.3.1              # via spacy
+toolz==0.10.0             # via distributed
 torch==1.3.1
 torchsummary==1.5.1
 torchvision==0.4.2
 tornado==6.0.3
+tpot==0.11.0
 tqdm==4.39.0
 traitlets==4.3.3          # via ipykernel, ipython, ipywidgets, jupyter-client, jupyter-contrib-core, jupyter-contrib-nbextensions, jupyter-core, jupyter-latex-envs, jupyter-nbextensions-configurator, nbconvert, nbformat, notebook, qtconsole
+transformers==2.2.0
+transforms3d==0.3.1
+tsfresh==0.13.0
 typed-ast==1.4.0          # via astroid
 typing==3.7.4.1           # via optuna
-urllib3==1.25.7           # via requests
+update-checker==0.16
+urllib3==1.25.7           # via botocore, requests
+vecstack==0.4.0
 wasabi==0.4.0             # via spacy, thinc
 wcwidth==0.1.7            # via cmd2, prompt-toolkit, pytest
 webencodings==0.5.1       # via bleach
@@ -199,7 +231,8 @@ widgetsnbextension==3.5.1  # via ipywidgets
 wrapt==1.11.2             # via astroid, tensorflow
 xarray==0.14.1
 xgboost==0.90
+zict==1.0.0               # via distributed
 zipp==0.6.0               # via importlib-metadata
 
 # The following packages are considered to be unsafe in a requirements file:
-# setuptools==42.0.1        # via google-auth, gunicorn, ipython, jsonschema, jupyter-contrib-core, kiwisolver, markdown, protobuf, spacy, tensorboard
+# setuptools==42.0.2        # via google-auth, gunicorn, ipython, jsonschema, jupyter-contrib-core, kiwisolver, markdown, protobuf, spacy, tensorboard
